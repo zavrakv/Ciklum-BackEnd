@@ -10,5 +10,11 @@ const farmSchema = new Schema({
   }
 });
 
+farmSchema.methods.createFarm = function () {
+  const res = this.servers;
+  console.log(res);
+};
+
 const Farm = mongoose.model('Farm', farmSchema);
 
+module.exports = { Farm };
