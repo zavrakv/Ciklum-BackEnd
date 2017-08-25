@@ -4,10 +4,12 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const exphbs  = require('express-handlebars');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const farms = require('./routes/farms');
+const endpoints = require('./routes/endpoints');
 
 const app = express();
 
@@ -15,7 +17,8 @@ require('./database/database');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.all('/endpoint', endpoints);
 app.use('/users', users);
 app.all('/api/farms/*', farms);
 
