@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const farmSchema = new Schema({
+    name: {
+      type: String,
+      unique: true,
+    },
     servers: Array,
   }, {
   timestamps: {
@@ -9,11 +13,6 @@ const farmSchema = new Schema({
     updatedAt: 'updated_at',
   }
 });
-
-farmSchema.methods.createFarm = function () {
-  const res = this.servers;
-  console.log(res);
-};
 
 const Farm = mongoose.model('Farm', farmSchema);
 

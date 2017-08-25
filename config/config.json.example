@@ -1,0 +1,12 @@
+{
+  "development": {
+    "PORT": 3000,
+    "DOMAIN": "localhost",
+    "DATABASE_NAME": "ciklum_db"
+  },
+  "production": {
+    "PORT": 8080,
+    "DOMAIN": "localhost",
+    "DATABASE_NAME": "ciklum_db"
+  }
+}

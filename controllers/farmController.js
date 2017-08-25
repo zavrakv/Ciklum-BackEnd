@@ -1,24 +1,47 @@
-const express = require('express');
-
-const { farmSchema, Farm } = require('../models/farm');
-
-// const models = require('../../models');
-// const env = process.env.NODE_ENV || 'development';
-// const config = require('../../config/config.json')[env];
+const { Farm } = require('../models/farm');
 
 
 const farm = {
   
-  createFarm: (res) => {
-    Farm.create(res.body, function (err, servers) {
-      console.log(servers)
-    });
+  createFarm: (req, res) => {
+    Farm.create(req.body)
+      .then((farm) => {
+        res.send(`Farm ${farm.name} was successfully created!`);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   },
   
-  getAllFarms: (res) => {
-    Farm.find().then((res) => {
-      console.log(res);
-    })
+  getFarmById: (req, res) => {
+    Farm.findOne({ _id: req.query.id })
+      .then((farm) => {
+        res.send(farm);
+      })
+      .catch((err) => {
+        res.send(err);
+      })
+  },
+  
+  getAllFarms: (req, res) => {
+    Farm.find()
+      .then((farms) => {
+        res.send(farms);
+      })
+  },
+  
+  updateFarm: (req, res) => {
+    Farm.findOneAndUpdate({ _id: req.body._id }, req.body)
+      .then((farm => {
+        res.send(farm);
+      }))
+  },
+  
+  deleteFarm: (req, res) => {
+    Farm.findOne({ _id: req.query.id })
+      .then((farms) => {
+        res.send(farms);
+      })
   }
 };
 

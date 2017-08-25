@@ -62,3 +62,7 @@ typings/
 # IDE settings
 
 .idea/
+
+# Config file
+
+config/config.json
