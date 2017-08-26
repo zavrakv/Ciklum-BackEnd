@@ -7,8 +7,9 @@ const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
 
 const index = require('./routes/index');
-const users = require('./routes/users');
+const servers = require('./routes/servers');
 const farms = require('./routes/farms');
+const endpoints = require('./routes/endpoints');
 
 const app = express();
 
@@ -28,8 +29,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 app.all('/api/farms/*', farms);
+app.all('/api/servers/*', servers);
+app.all('/endpoints/*', endpoints);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

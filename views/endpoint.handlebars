@@ -1,15 +1,1 @@
-<b>ModuleName: {{moduleName}}<br>
-ModuleInitTime: {{moduleInitTime}}<br>
-SystemTime: {{systemTime}}</b><br><br>
-<b>QueueSizes</b><br>
-QueuesInsert={{queuesInsert}}<br>
-QueuesInsert\ToProcess={{queuesInsertToProcess}}<br>
-QueuesIn={{queuesIn}}<br>
-QueuesIn\ToProcess={{queuesInToProcess}}<br>
-QueuesOut={{queuesOut}}<br>
-QueuesOutV2={{queuesOutV2}}<br>
-QueuesError={{queuesError}}<br><br>
-<b>QueuesHealth={{queuesHealth}}</b><br>
-<br>ThreadCount={{threadCount}}<br>
-<b>ThreadHealth={{threadHealth}}</b><br><br>
-<b>DatabaseHealth={{databaseHealth}}</b><br>
+<b>ModuleName: {{data.moduleName}}<br>ModuleInitTime: {{data.moduleInitTime}}<br>SystemTime: {{data.systemTime}}</b><br><br><b>QueueSizes</b><br>QueuesInsert={{data.queuesInsert}}<br>QueuesInsert\ToProcess={{data.queuesInsertToProcess}}<br>QueuesIn={{data.queuesIn}}<br>QueuesIn\ToProcess={{data.queuesInToProcess}}<br>QueuesOut={{data.queuesOut}}<br>QueuesOutV2={{data.queuesOutV2}}<br>QueuesError={{data.queuesError}}<br><br><b>QueuesHealth={{data.queuesHealth}}</b><br><br>ThreadCount={{data.threadCount}}<br><b>ThreadHealth={{data.threadHealth}}</b><br><br><b>DatabaseHealth={{data.databaseHealth}}</b><br>

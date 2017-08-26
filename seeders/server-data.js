@@ -4,7 +4,7 @@ const config = require('../config/config.json')[env];
 module.exports = [{
   model: 'Server',
   documents: [{
-    url: `${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/1`,
+    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/1`,
     moduleName: 'module1',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -20,7 +20,7 @@ module.exports = [{
     threadHealth: null,
     databaseHealth: null
     },{
-    url: `${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/2`,
+    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/2`,
     moduleName: 'module2',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -36,7 +36,7 @@ module.exports = [{
     threadHealth: null,
     databaseHealth: null
     },{
-    url: `${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/3`,
+    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/3`,
     moduleName: 'module3',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -52,7 +52,7 @@ module.exports = [{
     threadHealth: null,
     databaseHealth: null
     },{
-    url: `${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/4`,
+    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/4`,
     moduleName: 'module4',
     moduleInitTime: new Date(),
     systemTime: new Date(),

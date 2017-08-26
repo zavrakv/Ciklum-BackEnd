@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const serverSchema = new Schema({
   url: String,
-  moduleName: String,
+  moduleName: {
+    type: String,
+    unique: true
+  },
   moduleInitTime: Date,
   systemTime: Date,
   queuesInsert: Number,
