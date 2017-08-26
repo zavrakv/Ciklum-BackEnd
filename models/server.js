@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const serverSchema = new Schema({
+  url: String,
   moduleName: String,
   moduleInitTime: Date,
   systemTime: Date,
@@ -24,3 +25,5 @@ const serverSchema = new Schema({
 });
 
 const Server = mongoose.model('Server', serverSchema);
+
+module.exports = { Server };
