@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { autoIncrement } = require('../database/database');
 
 const endpointSchema = new Schema({
-  id: {
-    type: Number,
-    default: 1,
-  },
   moduleName: String,
   moduleInitTime: Date,
   systemTime: Date,
@@ -32,28 +27,53 @@ const endpointSchema = new Schema({
  * @memberOf Endpoint
  */
 
+endpointSchema.statics.getHashes = function () {
+  const endpoint = this;
+  const hashesArr = {};
+  
+  return endpoint.find()
+    .then((endpoints) => {
+      for (let i = 0; i < endpoints.length; i += 1) {
+        let moduleName = endpoints[i].moduleName;
+        hashesArr[moduleName] = endpoints[i]._id;
+      }
+      return hashesArr;
+    })
+};
+
+/**
+ * @memberOf Endpoint
+ */
+
 endpointSchema.statics.randomizeData = function (data) {
   
   const max = 100;
   const min = 1;
+  const endpoint = this;
+  const boolFields = ["queuesHealth", "threadHealth", "databaseHealth"];
+  
   
   for(let item in data) {
     if (data.hasOwnProperty(item)) {
       
+      
       if(data[item] === null) {
         data[item] = Math.floor(Math.random() * (max - min)) + min;
+        
+        for (let i = 0; i < boolFields.length; i += 1) {
+          if (item === boolFields[i]) {
+            data[item] > 50 ?
+              data[item] = 'OK':
+              data[item] = 'BAD';
+          }
+        }
+        
       }
     }
   }
   
   return data;
 };
-
-endpointSchema.plugin(autoIncrement.plugin, {
-  model: 'Endpoint',
-  field: 'id',
-  startAt: 1,
-});
 
 const Endpoint = mongoose.model('Endpoint', endpointSchema);
 
