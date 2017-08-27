@@ -27,6 +27,4 @@ const serverSchema = new Schema({
   }
 });
 
-const Server = mongoose.model('Server', serverSchema);
-
-module.exports = { Server };
+module.exports = { serverSchema };
