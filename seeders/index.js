@@ -1,6 +1,6 @@
 const env = process.env.NODE_ENV;
 const config = require('../config/config.json')[env];
-const farmData = require('./server-data');
+const farmData = require('./farm-data');
 const endpointData = require('./endpoint-data');
 
 const mongoose = require('mongoose');
@@ -9,7 +9,7 @@ const seeder = require('mongoose-seed');
 /* TODO: import _id s from newly created endpoints */
 
 // Connect to MongoDB via Mongoose
-seeder.connect(`mongodb://${config.DOMAIN}/${config.DATABASE_NAME}`, function() {
+seeder.connect(`mongodb://localhost/${config.DATABASE_NAME}`, function() {
 
   // Load Mongoose models
   seeder.loadModels([

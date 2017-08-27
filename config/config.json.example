@@ -3,6 +3,7 @@
     "PORT": 3000,
     "PROTOCOL": "http",
     "DOMAIN": "localhost",
+    "DB_DOMAIN": "localhost",
     "DATABASE_NAME": "ciklum_db",
     "IP_WHITE_LIST": [
 
@@ -12,6 +13,7 @@
     "PORT": 8080,
     "PROTOCOL": "http",
     "DOMAIN": "localhost",
+    "DB_DOMAIN": "localhost",
     "DATABASE_NAME": "ciklum_db",
     "IP_WHITE_LIST": [
 
