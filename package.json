@@ -5,7 +5,8 @@
   "scripts": {
     "serveDev": "cross-env NODE_ENV=development nodemon ./bin/www",
     "start": "cross-env NODE_ENV=production nodemon ./bin/www",
-    "seeders": "cross-env NODE_ENV=development node seeders/index.js",
+    "seedersProd": "cross-env NODE_ENV=production node seeders/index.js",
+    "seedersDev": "cross-env NODE_ENV=development node seeders/index.js",
     "mongo": "bash ./bin/mongod.sh"
   },
   "dependencies": {
