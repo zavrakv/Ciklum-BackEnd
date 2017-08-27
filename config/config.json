@@ -9,7 +9,7 @@
     ]
   },
   "production": {
-    "PORT": 80,
+    "PORT": 8080,
     "PROTOCOL": "https",
     "DOMAIN": "ciklum-backend.herokuapp.com",
     "DATABASE_NAME": "ciklum_db",
