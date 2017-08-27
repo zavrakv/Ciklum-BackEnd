@@ -9,7 +9,7 @@ const seeder = require('mongoose-seed');
 /* TODO: import _id s from newly created endpoints */
 
 // Connect to MongoDB via Mongoose
-seeder.connect(`mongodb://localhost/${config.DATABASE_NAME}`, function() {
+seeder.connect(`mongodb://${config.DB_DOMAIN}/${config.DATABASE_NAME}`, function() {
 
   // Load Mongoose models
   seeder.loadModels([
