@@ -6,7 +6,7 @@ module.exports = [{
   documents: [{
     name: 'farmOne',
     servers: [{
-      url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/1`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/1`,
       moduleName: 'module1',
       moduleInitTime: new Date(),
       systemTime: new Date(),
@@ -22,7 +22,7 @@ module.exports = [{
       threadHealth: null,
       databaseHealth: null
     },{
-    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/2`,
+    url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/2`,
     moduleName: 'module2',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -38,7 +38,7 @@ module.exports = [{
     threadHealth: null,
     databaseHealth: null
   },{
-    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/3`,
+    url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/3`,
     moduleName: 'module3',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -54,7 +54,7 @@ module.exports = [{
     threadHealth: null,
     databaseHealth: null
   },{
-    url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/4`,
+    url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/4`,
     moduleName: 'module4',
     moduleInitTime: new Date(),
     systemTime: new Date(),
@@ -73,7 +73,7 @@ module.exports = [{
   }, {
     name: 'farmTwo',
     servers: [{
-      url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/5`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/5`,
       moduleName: 'module5',
       moduleInitTime: new Date(),
       systemTime: new Date(),
@@ -89,7 +89,7 @@ module.exports = [{
       threadHealth: null,
       databaseHealth: null
     },{
-      url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/6`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/6`,
       moduleName: 'module6',
       moduleInitTime: new Date(),
       systemTime: new Date(),
@@ -108,7 +108,7 @@ module.exports = [{
   }, {
     name: 'farmThree',
     servers: [{
-      url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/7`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/7`,
       moduleName: 'module7',
       moduleInitTime: new Date(),
       systemTime: new Date(),
@@ -124,7 +124,7 @@ module.exports = [{
       threadHealth: null,
       databaseHealth: null
     },{
-      url: `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/8`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/8`,
       moduleName: 'module8',
       moduleInitTime: new Date(),
       systemTime: new Date(),

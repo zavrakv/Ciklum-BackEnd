@@ -27,7 +27,7 @@ farmSchema.post('save', function (farm) {
         for (let module in hashes) {
           if (farm.servers[i].moduleName === module) {
             let hash = hashes[module];
-            let url = `http://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/${hash}`;
+            let url = `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/${hash}`;
         
             Farm.update(
               {_id: farm._id, 'servers._id': farm.servers[i]._id},

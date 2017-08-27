@@ -1,6 +1,7 @@
 {
   "development": {
     "PORT": 3000,
+    "PROTOCOL": "http",
     "DOMAIN": "localhost",
     "DATABASE_NAME": "ciklum_db",
     "IP_WHITE_LIST": [
@@ -9,6 +10,7 @@
   },
   "production": {
     "PORT": 8080,
+    "PROTOCOL": "http",
     "DOMAIN": "localhost",
     "DATABASE_NAME": "ciklum_db",
     "IP_WHITE_LIST": [
