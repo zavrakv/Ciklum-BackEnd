@@ -1,4 +1,5 @@
-const {Server} = require('../models/server');
+const {serverSchema} = require('../models/server');
+const {Farm} = require('../models/farm');
 const axios = require('axios');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -17,28 +18,27 @@ const server = {
   },
   
   getServerStatus: (req, response) => {
-    const _id = req.query._id;
+    const { _id, serverId } = req.body;
     
-    Server.findOne({_id})
-      .then((res) => {
-        const url = res.url;
-        console.log(url);
+    Farm.findById(_id)
+      .then((foundFarm) => {
+        
+        const url = foundFarm.servers.id(serverId).url;
         
         axios.get(url)
           .then((res) => {
             const parsedData = server.parseServerInfo(res.data);
             response.json(parsedData);
           });
-        
-      })
+      });
   },
   
   parseServerInfo: (data) => {
+    /* TODO: find HTML parser */
     const regex = /^.+ModuleName\:\ ?(.+)\<.+ModuleInitTime\:\ ?(.+)\<.+SystemTime\:\ ?(.*?)\<.+QueuesInsert=(.+)\<.+QueuesInsert\\ToProcess=(.+)\<.+QueuesIn=(.+)\<.+QueuesIn\\ToProcess=(.+)\<.+QueuesOut=(.+)\<.+QueuesOutV2=(.+)\<.+QueuesError=(.+?)\<.+QueuesHealth=(.+?)\<.+ThreadCount=(.+?)\<.+ThreadHealth=(.+?)\<.+DatabaseHealth=(.+?)\<.+$/gm;
     const match = regex.exec(data);
   
-    const props = Object.keys(Server.schema.paths);
-    
+    const props = Object.keys(serverSchema.paths);
     const info = {};
     
     for (let i = 1; i < match.length; i++) {
