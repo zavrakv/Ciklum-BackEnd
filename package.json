@@ -5,7 +5,7 @@
   "scripts": {
     "serveDev": "cross-env NODE_ENV=development nodemon ./bin/www",
     "start": "cross-env NODE_ENV=production nodemon ./bin/www",
-    "seeders": "node seeders/index.js",
+    "seeders": "cross-env NODE_ENV=development node seeders/index.js",
     "mongo": "bash ./bin/mongod.sh"
   },
   "dependencies": {
@@ -19,7 +19,6 @@
     "express-handlebars": "^3.0.0",
     "jade": "~1.11.0",
     "mongoose": "^4.11.7",
-    "mongoose-auto-increment": "^5.0.1",
     "mongoose-seed": "^0.3.2",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
