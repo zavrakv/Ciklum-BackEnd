@@ -1,0 +1,20 @@
+{
+  "development": {
+    "PORT": 3000,
+    "PROTOCOL": "http",
+    "DOMAIN": "localhost",
+    "DATABASE_NAME": "ciklum_db",
+    "IP_WHITE_LIST": [
+
+    ]
+  },
+  "production": {
+    "PORT": 80,
+    "PROTOCOL": "https",
+    "DOMAIN": "ciklum-backend.herokuapp.com",
+    "DATABASE_NAME": "ciklum_db",
+    "IP_WHITE_LIST": [
+
+    ]
+  }
+}
