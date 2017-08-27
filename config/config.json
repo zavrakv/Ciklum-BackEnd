@@ -14,7 +14,7 @@
     "PROTOCOL": "http",
     "DOMAIN": "207.154.201.232",
     "DB_DOMAIN": "localhost",
-    "DATABASE_NAME": "local",
+    "DATABASE_NAME": "ciklum_db",
     "IP_WHITE_LIST": [
 
     ]
