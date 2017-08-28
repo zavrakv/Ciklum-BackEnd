@@ -10,7 +10,7 @@
     ]
   },
   "production": {
-    "PORT": 8080,
+    "PORT": 80,
     "PROTOCOL": "http",
     "DOMAIN": "207.154.201.232",
     "DB_DOMAIN": "localhost",
