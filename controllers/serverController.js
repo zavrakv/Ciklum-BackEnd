@@ -33,6 +33,36 @@ const server = {
       });
   },
   
+  getAllServersStatus: (req, response) => {
+    
+    Farm.find()
+      .then((farms) => {
+        const data = [];
+        
+        farms.forEach((farm) => {
+          farm.servers.forEach((module) => {
+            let url = module.url;
+            getAll(url).then((res)=> {
+              data.push(res);
+              console.log(data);
+  
+            })
+            
+          });
+        });
+        
+        function getAll(url) {
+          return axios.get(url)
+            .then((res) => {
+              return server.parseServerInfo(res.data);
+              // data.push(parsedData);
+            });
+        }
+        
+        response.send(data);
+      })
+  },
+  
   parseServerInfo: (data) => {
     /* TODO: find HTML parser */
     const regex = /^.+ModuleName\:\ ?(.+)\<.+ModuleInitTime\:\ ?(.+)\<.+SystemTime\:\ ?(.*?)\<.+QueuesInsert=(.+)\<.+QueuesInsert\\ToProcess=(.+)\<.+QueuesIn=(.+)\<.+QueuesIn\\ToProcess=(.+)\<.+QueuesOut=(.+)\<.+QueuesOutV2=(.+)\<.+QueuesError=(.+?)\<.+QueuesHealth=(.+?)\<.+ThreadCount=(.+?)\<.+ThreadHealth=(.+?)\<.+DatabaseHealth=(.+?)\<.+$/gm;

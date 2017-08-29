@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
+const cors = require('cors');
 
 const index = require('./routes/index');
 const servers = require('./routes/servers');
@@ -14,6 +15,18 @@ const endpoints = require('./routes/endpoints');
 const app = express();
 
 require('./database/database');
+
+/**
+ * Setting up CORS
+ */
+
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  exposedHeaders: ['Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
