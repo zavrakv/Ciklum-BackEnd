@@ -2,6 +2,7 @@ const {serverSchema} = require('../models/server');
 const {Farm} = require('../models/farm');
 const axios = require('axios');
 const mongoose = require('mongoose');
+const q = require('q');
 mongoose.Promise = require('bluebird');
 
 const server = {
@@ -35,32 +36,43 @@ const server = {
   
   getAllServersStatus: (req, response) => {
     
-    Farm.find()
+    const farmId = req.query.id;
+    let promise;
+    
+    farmId ?
+      promise = Farm.findById(farmId):
+      promise = Farm.find();
+    
+    promise
       .then((farms) => {
-        const data = [];
+        const promises = [];
         
-        farms.forEach((farm) => {
+        let farmsArr = [];
+        
+        farmId ?
+          farmsArr.push(farms):
+          farmsArr = farms;
+       
+        farmsArr.forEach((farm) => {
           farm.servers.forEach((module) => {
             let url = module.url;
-            getAll(url).then((res)=> {
-              data.push(res);
-              console.log(data);
-  
-            })
-            
+            let promise = getAll(url);
+
+            promises.push(promise);
           });
         });
-        
-        function getAll(url) {
-          return axios.get(url)
-            .then((res) => {
-              return server.parseServerInfo(res.data);
-              // data.push(parsedData);
-            });
-        }
-        
-        response.send(data);
-      })
+
+        q.all(promises).then((data) => {
+          response.send(data);
+        });
+      });
+  
+    function getAll(url) {
+      return axios.get(url)
+        .then((res) => {
+          return server.parseServerInfo(res.data);
+        });
+    }
   },
   
   parseServerInfo: (data) => {
