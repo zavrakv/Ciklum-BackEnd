@@ -44,6 +44,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * Declaring routes' handlers
+ */
+
 app.use('/', index);
 app.all('/api/farms/*', farms);
 app.all('/api/servers/*', servers);

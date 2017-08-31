@@ -6,8 +6,6 @@ const endpointData = require('./endpoint-data');
 const mongoose = require('mongoose');
 const seeder = require('mongoose-seed');
 
-/* TODO: import _id s from newly created endpoints */
-
 // Connect to MongoDB via Mongoose
 seeder.connect(`mongodb://${config.DB_DOMAIN}/${config.DATABASE_NAME}`, function() {
 
