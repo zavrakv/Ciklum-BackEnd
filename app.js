@@ -5,6 +5,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
+const cors = require('cors');
+
+const env = process.env.NODE_ENV;
+const config = require('./config/config.json')[env];
 
 const index = require('./routes/index');
 const servers = require('./routes/servers');
@@ -14,6 +18,18 @@ const endpoints = require('./routes/endpoints');
 const app = express();
 
 require('./database/database');
+
+/**
+ * Setting up CORS
+ */
+
+const corsOptions = {
+  origin: ['http://localhost:3001', 'http://207.154.201.232:8001'],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  exposedHeaders: ['Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +47,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.all('/api/farms/*', farms);
 app.all('/api/servers/*', servers);
+
+app.use('/endpoints/*', (req, res, next) => {
+  
+  const ip = req.ip ||
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+  const allowed = config.IP_WHITE_LIST.includes(ip);
+  console.log(allowed);
+  
+  allowed ?
+    next() :
+    res.end('forbidden');
+
+});
+
 app.all('/endpoints/*', endpoints);
 
 // catch 404 and forward to error handler

@@ -7,19 +7,58 @@ const serverSchema = new Schema({
     type: String,
     unique: true
   },
-  moduleInitTime: Date,
-  systemTime: Date,
-  queuesInsert: Number,
-  queuesInsertToProcess: Number,
-  queuesIn: Number,
-  queuesInToProcess: Number,
-  queuesOut: Number,
-  queuesOutV2: Number,
-  queuesError: Number,
-  queuesHealth: String,
-  threadCount: Number,
-  threadHealth: String,
-  databaseHealth: String,
+  moduleInitTime: {
+    type: Date,
+    default: null
+  },
+  systemTime: {
+    type: Date,
+    default: null
+  },
+  queuesInsert: {
+    type: Number,
+    default: null
+  },
+  queuesInsertToProcess: {
+    type: Number,
+    default: null
+  },
+  queuesIn: {
+    type: Number,
+    default: null
+  },
+  queuesInToProcess: {
+    type: Number,
+    default: null
+  },
+  queuesOut: {
+    type: Number,
+    default: null
+  },
+  queuesOutV2: {
+    type: Number,
+    default: null
+  },
+  queuesError: {
+    type: Number,
+    default: null
+  },
+  queuesHealth: {
+    type: String,
+    default: null
+  },
+  threadCount: {
+    type: Number,
+    default: null
+  },
+  threadHealth: {
+    type: String,
+    default: null
+  },
+  databaseHealth: {
+    type: String,
+    default: null
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -1,5 +1,4 @@
 const { Farm } = require('../models/farm');
-const { Endpoint } = require('../models/endpoint');
 
 
 const farm = {
