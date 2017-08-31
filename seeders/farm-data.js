@@ -139,6 +139,22 @@ module.exports = [{
       threadCount: 16,
       threadHealth: null,
       databaseHealth: null
+    },{
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/bla-bla-test-broken-url`,
+      moduleName: 'module9',
+      moduleInitTime: new Date(),
+      systemTime: new Date(),
+      queuesInsert: null,
+      queuesInsertToProcess: null,
+      queuesIn: null,
+      queuesInToProcess: null,
+      queuesOut: null,
+      queuesOutV2: null,
+      queuesError: null,
+      queuesHealth: null,
+      threadCount: 16,
+      threadHealth: null,
+      databaseHealth: null
     }]
   }]
 }];
