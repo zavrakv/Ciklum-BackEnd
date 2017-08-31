@@ -9,9 +9,18 @@ const server = {
   
   createServer: (req, res) => {
     
-    Server.create(req.body)
-      .then((server) => {
-        res.send(`Server ${server.moduleName} was successfully created!`);
+    const { farm_id, url, moduleName } = req.body;
+    
+    Farm.findById(farm_id)
+      .then((farm) => {
+        farm.servers.push({ url, moduleName });
+        farm.save()
+          .then((server) => {
+            res.send(`Server ${server.moduleName} was successfully created!`);
+          })
+          .catch((err) => {
+            res.send(err);
+          });
       })
       .catch((err) => {
         res.send(err);
@@ -30,8 +39,14 @@ const server = {
           .then((res) => {
             const parsedData = server.parseServerInfo(res.data);
             response.json(parsedData);
-          });
-      });
+          })
+          .catch((err) => {
+            response.send(err.message);
+          })
+      })
+      .catch((err) => {
+        response.send(err);
+      })
   },
   
   getAllServersStatus: (req, response) => {
@@ -71,7 +86,7 @@ const server = {
       return axios.get(url)
         .then((res) => {
           return server.parseServerInfo(res.data);
-        });
+        })
     }
   },
   
@@ -83,13 +98,16 @@ const server = {
     const props = Object.keys(serverSchema.paths);
     const info = {};
     
-    for (let i = 1; i < match.length; i++) {
-      
-      for (let j = 0; j < props.length; j++) {
-        if (j === i) {
-          info[props[j]] = match[i];
+    if (match) {
+      for (let i = 1; i < match.length; i++) {
+        for (let j = 0; j < props.length; j++) {
+          if (j === i) {
+            info[props[j]] = match[i];
+          }
         }
       }
+    } else {
+      info.message = data.message;
     }
     
     return info;

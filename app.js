@@ -48,24 +48,21 @@ app.use('/', index);
 app.all('/api/farms/*', farms);
 app.all('/api/servers/*', servers);
 
-app.use('/endpoints/*', function(req, res, next) {
+app.use('/endpoints/*', (req, res, next) => {
   
   const ip = req.ip ||
     req.headers['x-forwarded-for'] ||
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
+  const allowed = config.IP_WHITE_LIST.includes(ip);
+  console.log(allowed);
   
-  console.log(req.ip);
-  
-  config.IP_WHITE_LIST.forEach((addr) => {
-    ip !== addr ?
-      res.end() :
-      next()
-  });
+  allowed ?
+    next() :
+    res.end('forbidden');
 
 });
-
 
 app.all('/endpoints/*', endpoints);
 
