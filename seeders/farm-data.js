@@ -140,7 +140,7 @@ module.exports = [{
       threadHealth: null,
       databaseHealth: null
     },{
-      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/bla-bla-test-broken-url`,
+      url: `${config.PROTOCOL}://${config.DOMAIN}:${config.PORT}/endpoints/get-endpoint/bla-bla-test-broken-url`,
       moduleName: 'module9',
       moduleInitTime: new Date(),
       systemTime: new Date(),
