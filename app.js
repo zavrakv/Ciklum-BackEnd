@@ -24,7 +24,7 @@ require('./database/database');
  */
 
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: ['http://localhost:3001', 'http://207.154.201.232:8001'],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   exposedHeaders: ['Authorization'],
 };
