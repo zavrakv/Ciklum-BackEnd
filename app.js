@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
 const cors = require('cors');
 
+const env = process.env.NODE_ENV;
+const config = require('./config/config.json')[env];
+
 const index = require('./routes/index');
 const servers = require('./routes/servers');
 const farms = require('./routes/farms');
@@ -44,6 +47,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.all('/api/farms/*', farms);
 app.all('/api/servers/*', servers);
+
+app.use('/endpoints/*', function(req, res, next) {
+  
+  const ip = req.ip ||
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+  
+  console.log(req.ip);
+  
+  config.IP_WHITE_LIST.forEach((addr) => {
+    ip !== addr ?
+      res.end() :
+      next()
+  });
+
+});
+
+
 app.all('/endpoints/*', endpoints);
 
 // catch 404 and forward to error handler
