@@ -7,7 +7,7 @@ mongoose.Promise = require('bluebird');
 
 const server = {
   
-  createServer: (req, res) => {
+  createServer(req, res) {
     
     const { farm_id, url, moduleName } = req.body;
     
@@ -27,7 +27,7 @@ const server = {
       });
   },
   
-  getServerStatus: (req, response) => {
+  getServerStatus(req, response) {
     const { _id, serverId } = req.body;
     
     Farm.findById(_id)
@@ -49,7 +49,7 @@ const server = {
       })
   },
   
-  getAllServersStatus: (req, response) => {
+  getAllServersStatus(req, response) {
     
     const farmId = req.query.id;
     let promise;
@@ -90,7 +90,7 @@ const server = {
     }
   },
   
-  parseServerInfo: (data) => {
+  parseServerInfo(data) {
     /* TODO: find HTML parser */
     const regex = /^.+ModuleName\:\ ?(.+)\<.+ModuleInitTime\:\ ?(.+)\<.+SystemTime\:\ ?(.*?)\<.+QueuesInsert=(.+)\<.+QueuesInsert\\ToProcess=(.+)\<.+QueuesIn=(.+)\<.+QueuesIn\\ToProcess=(.+)\<.+QueuesOut=(.+)\<.+QueuesOutV2=(.+)\<.+QueuesError=(.+?)\<.+QueuesHealth=(.+?)\<.+ThreadCount=(.+?)\<.+ThreadHealth=(.+?)\<.+DatabaseHealth=(.+?)\<.+$/gm;
     const match = regex.exec(data);
