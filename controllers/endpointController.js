@@ -3,7 +3,7 @@ const { Endpoint } = require('../models/endpoint');
 
 const endpoint = {
   
-  getEndpoint: (req, response) => {
+  getEndpoint(req, response) {
     const id = req.params.id;
     
     let data = null;
@@ -27,7 +27,7 @@ const endpoint = {
     
   },
   
-  randomUnstableSituation: () => {
+  randomUnstableSituation() {
     const max = 100;
     const min = 1;
     

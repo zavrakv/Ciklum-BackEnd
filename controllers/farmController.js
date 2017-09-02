@@ -3,7 +3,7 @@ const { Farm } = require('../models/farm');
 
 const farm = {
   
-  createFarm: (req, res) => {
+  createFarm(req, res) {
     Farm.create(req.body)
       .then((farm) => {
         res.send(`Farm ${farm.name} was successfully created!`);
@@ -13,7 +13,7 @@ const farm = {
       });
   },
   
-  getFarmById: (req, res) => {
+  getFarmById(req, res) {
     Farm.findOne({ _id: req.query.id })
       .then((farm) => {
         res.send(farm);
@@ -23,21 +23,21 @@ const farm = {
       })
   },
   
-  getAllFarms: (req, res) => {
+  getAllFarms(req, res) {
     Farm.find()
       .then((farms) => {
         res.send(farms);
       })
   },
   
-  updateFarm: (req, res) => {
+  updateFarm(req, res) {
     Farm.findOneAndUpdate({ _id: req.body._id }, req.body)
       .then((farm => {
         res.send(farm);
       }))
   },
   
-  deleteFarm: (req, res) => {
+  deleteFarm(req, res) {
     Farm.findOne({ _id: req.query.id })
       .then((farms) => {
         res.send(farms);
