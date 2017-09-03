@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serveDev": "cross-env NODE_ENV=development nodemon ./bin/www",
+    "serveWithTestAsync": "cross-env NODE_ENV=development nodemon --trace-sync-io ./bin/www",
     "start": "cross-env NODE_ENV=production nodemon ./bin/www",
     "seedersProd": "cross-env NODE_ENV=production node seeders/index.js",
     "seedersDev": "cross-env NODE_ENV=development node seeders/index.js",
